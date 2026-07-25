@@ -2,6 +2,7 @@ package net.jason.mccourse.block;
 
 import com.mojang.blaze3d.shaders.Uniform;
 import net.jason.mccourse.MCCourseMod;
+import net.jason.mccourse.block.custom.SoundBlock;
 import net.jason.mccourse.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -59,6 +60,9 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
+            () -> new SoundBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
