@@ -67,6 +67,8 @@ public class MCCourseMod
             event.accept(ModBlocks.END_STONE_ALEXANDRITE_ORE);
             event.accept(ModBlocks.NETHER_ALEXANDRITE_ORE);
             event.accept(ModBlocks.SOUND_BLOCK);
+            event.accept(ModBlocks.ALEXANDRITE_STAIRS);
+            event.accept(ModBlocks.ALEXANDRITE_SLABS);
         }
     }
 

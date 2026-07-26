@@ -13,6 +13,9 @@
   "block.mccourse.end_stone_alexandrite_ore": "Block of End Alexandrite Ore",
   "block.mccourse.nether_alexandrite_ore": "Block of Nether Alexandrite Ore",
 
+  "block.mccourse.alexandrite_stairs": "Alexandrite Stairs",
+  "block.mccourse.alexandrite_slab": "Alexandrite Slab",
+
   "item_group.mccourse.course_tab": "Course Tab",
 
   "item.mccourse.metal_detector.no_valuables": "No Valuables Found",

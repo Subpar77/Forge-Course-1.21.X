@@ -49,6 +49,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_alexandrite", has(ModItems.RAW_ALEXANDRITE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"raw_alexandrite_block"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_STAIRS.get(), 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', ModBlocks.ALEXANDRITE_BLOCK.get())
+                .unlockedBy("has_alexandrite_block", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_stairs"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_SLABS.get(), 6)
+                .pattern("   ")
+                .pattern("   ")
+                .pattern("###")
+                .define('#', ModBlocks.ALEXANDRITE_BLOCK.get())
+                .unlockedBy("has_alexandrite_slab", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_slab"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_ALEXANDRITE.get(), 9)
                 .requires(ModBlocks.RAW_ALEXANDRITE_BLOCK.get())
                 .unlockedBy("has_alexandrite_block", has(ModBlocks.RAW_ALEXANDRITE_BLOCK.get()))
