@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
@@ -65,10 +66,49 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_alexandrite_slab", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_slab"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_PRESSURE_PLATE.get())
+                .pattern("   ")
+                .pattern("## ")
+                .pattern("   ")
+                .define('#', ModBlocks.ALEXANDRITE_BLOCK.get())
+                .unlockedBy("has_alexandrite_block", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_pressure_plate"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_FENCE.get(), 3)
+                .pattern("   ")
+                .pattern("#A#")
+                .pattern("#A#")
+                .define('#', ModBlocks.ALEXANDRITE_BLOCK.get())
+                .define('A', Items.STICK)
+                .unlockedBy("has_alexandrite_block", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_fence"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_FENCE_GATE.get())
+                .pattern("   ")
+                .pattern("#A#")
+                .pattern("#A#")
+                .define('#', Items.STICK)
+                .define('A', ModBlocks.ALEXANDRITE_BLOCK.get())
+                .unlockedBy("has_alexandrite_block", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_fence_gate"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_WALL.get(), 6)
+                .pattern("   ")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModBlocks.ALEXANDRITE_BLOCK.get())
+                .unlockedBy("has_alexandrite_block", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_wall"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_ALEXANDRITE.get(), 9)
                 .requires(ModBlocks.RAW_ALEXANDRITE_BLOCK.get())
                 .unlockedBy("has_alexandrite_block", has(ModBlocks.RAW_ALEXANDRITE_BLOCK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "raw_alexandrite"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.ALEXANDRITE_BUTTON.get())
+                .requires(ModBlocks.ALEXANDRITE_BLOCK.get())
+                .unlockedBy("has_alexandrite_block", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "alexandrite_button"));
 
         oreSmeltingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 200, "alexandrite");
         oreBlastingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 100, "alexandrite");
