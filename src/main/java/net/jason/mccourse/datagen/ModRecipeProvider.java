@@ -8,6 +8,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -52,11 +54,25 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_alexandrite_block", has(ModBlocks.RAW_ALEXANDRITE_BLOCK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "raw_alexandrite"));
 
-/*        nineBlockStorageRecipesWithCustomPacking(output, RecipeCategory.MISC, ModItems.RAW_ALEXANDRITE.get(), RecipeCategory.MISC, ModBlocks.RAW_ALEXANDRITE_BLOCK.get()
-        ,"mccourse:raw_alexandrite_block1", "alexandrite");
-        nineBlockStorageRecipesRecipesWithCustomUnpacking(output, RecipeCategory.MISC, ModItems.RAW_ALEXANDRITE.get(), RecipeCategory.MISC, ModBlocks.RAW_ALEXANDRITE_BLOCK.get(),
-                "mccourse:raw_alexandrite_from_block1", "alexandrite");*/
-        oreSmelting(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 200, "alexandrite");
-        oreBlasting(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 100, "alexandrite");
+        oreSmeltingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 200, "alexandrite");
+        oreBlastingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 100, "alexandrite");
+
+    }
+
+    // Helpers to ensure custom recipes get saved under mod namespace.
+    private static void oreSmeltingWithnameSpace(RecipeOutput output, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+        for (ItemLike ingredient : ingredients) {
+            String recipeName = getItemName(result) + "_from_smelthing_" + getItemName(ingredient);
+            SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), category, result, experience, cookingTime).group(group).unlockedBy(getHasName(ingredient), has(ingredient))
+                    .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, recipeName));
+        }
+    }
+
+    private static void oreBlastingWithnameSpace(RecipeOutput output, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+        for (ItemLike ingredient : ingredients) {
+            String recipeName = getItemName(result) + "_from_blasting_" + getItemName(ingredient);
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ingredient), category, result, experience, cookingTime).group(group).unlockedBy(getHasName(ingredient),has(ingredient))
+                .save(output,ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, recipeName));
+        }
     }
 }
