@@ -25,6 +25,13 @@ public class ModCreativeModeTabs {
                     output.accept(ModItems.KOHLRABI.get());
                     output.accept(ModItems.PEAT_BRICK.get());
 
+                    output.accept(ModItems.ALEXANDRITE_SWORD.get());
+                    output.accept(ModItems.ALEXANDRITE_AXE.get());
+                    output.accept(ModItems.ALEXANDRITE_PICKAXE.get());
+                    output.accept(ModItems.ALEXANDRITE_SHOVEL.get());
+                    output.accept(ModItems.ALEXANDRITE_HOE.get());
+                    output.accept(ModItems.ALEXANDRITE_PAXEL.get());
+
                     output.accept(ModBlocks.ALEXANDRITE_BLOCK.get());
                     output.accept(ModBlocks.ALEXANDRITE_ORE.get());
                     output.accept(ModBlocks.DEEPSLATE_ALEXANDRITE_ORE.get());

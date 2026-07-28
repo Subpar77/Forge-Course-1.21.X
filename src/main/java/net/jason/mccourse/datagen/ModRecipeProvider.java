@@ -116,6 +116,62 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_alexandrite_block", has(ModBlocks.ALEXANDRITE_BLOCK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_trapdoor"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ALEXANDRITE_SWORD.get())
+                .pattern(" # ")
+                .pattern(" # ")
+                .pattern(" S ")
+                .define('S', Items.STICK)
+                .define('#', ModItems.ALEXANDRITE.get())
+                .unlockedBy("has_alexandrite", has(ModItems.ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_sword"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ALEXANDRITE_PICKAXE.get())
+                .pattern("###")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('S', Items.STICK)
+                .define('#', ModItems.ALEXANDRITE.get())
+                .unlockedBy("has_alexandrite", has(ModItems.ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_pickaxe"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ALEXANDRITE_AXE.get())
+                .pattern("## ")
+                .pattern("#S ")
+                .pattern(" S ")
+                .define('S', Items.STICK)
+                .define('#', ModItems.ALEXANDRITE.get())
+                .unlockedBy("has_alexandrite", has(ModItems.ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_axe"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ALEXANDRITE_SHOVEL.get())
+                .pattern(" # ")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('S', Items.STICK)
+                .define('#', ModItems.ALEXANDRITE.get())
+                .unlockedBy("has_alexandrite", has(ModItems.ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_shovel"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ALEXANDRITE_HOE.get())
+                .pattern("## ")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('S', Items.STICK)
+                .define('#', ModItems.ALEXANDRITE.get())
+                .unlockedBy("has_alexandrite", has(ModItems.ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_hoe"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ALEXANDRITE_PAXEL.get())
+                .pattern("PSA")
+                .pattern(" I ")
+                .pattern(" I ")
+                .define('P', ModItems.ALEXANDRITE_PICKAXE.get())
+                .define('S', ModItems.ALEXANDRITE_SHOVEL.get())
+                .define('A', ModItems.ALEXANDRITE_AXE.get())
+                .define('I', Items.STICK)
+                .unlockedBy("has_alexandrite_pickaxe", has(ModItems.ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_paxel"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_ALEXANDRITE.get(), 9)
                 .requires(ModBlocks.RAW_ALEXANDRITE_BLOCK.get())
                 .unlockedBy("has_alexandrite_block", has(ModBlocks.RAW_ALEXANDRITE_BLOCK.get()))

@@ -44,8 +44,14 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.DEEPSLATE_ALEXANDRITE_ORE.get(),
-                    ModBlocks.END_STONE_ALEXANDRITE_ORE.get(),
-                    ModBlocks.NETHER_ALEXANDRITE_ORE.get());
+                    ModBlocks.END_STONE_ALEXANDRITE_ORE.get());
+
+        this.tag(ModTags.Blocks.NEEDS_ALEXANDRITE_TOOL)
+                .add(ModBlocks.NETHER_ALEXANDRITE_ORE.get());
+        this.tag(ModTags.Blocks.PAXEL_MINEABLE)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(BlockTags.MINEABLE_WITH_SHOVEL);
 
         this.tag(BlockTags.FENCES)
                 .add(ModBlocks.ALEXANDRITE_FENCE.get());
@@ -53,6 +59,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.ALEXANDRITE_WALL.get());
         this.tag(BlockTags.FENCE_GATES)
                 .add(ModBlocks.ALEXANDRITE_FENCE_GATE.get());
+
+        this.tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
+                .add(ModBlocks.NETHER_ALEXANDRITE_ORE.get());
+        this.tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
+                .add(ModBlocks.NETHER_ALEXANDRITE_ORE.get());
+        this.tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
+                .add(ModBlocks.NETHER_ALEXANDRITE_ORE.get());
+        this.tag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .add(ModBlocks.NETHER_ALEXANDRITE_ORE.get());
+        this.tag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+                .add(ModBlocks.NETHER_ALEXANDRITE_ORE.get());
 
     }
 
