@@ -2,6 +2,7 @@ package net.jason.mccourse.item;
 
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.item.custom.FuelItem;
+import net.jason.mccourse.item.custom.HammerItem;
 import net.jason.mccourse.item.custom.MetalDetectorItem;
 import net.jason.mccourse.item.custom.PaxelItem;
 import net.minecraft.world.item.*;
@@ -41,6 +42,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> ALEXANDRITE_PAXEL = ITEMS.register("alexandrite_paxel",
             () -> new PaxelItem(ModToolTiers.ALEXANDRITE, new Item.Properties().attributes(PaxelItem.createAttributes(ModToolTiers.ALEXANDRITE, 5f, -2.4f))));
+    public static final RegistryObject<Item> ALEXANDRITE_HAMMER = ITEMS.register("alexandrite_hammer",
+            () -> new HammerItem(ModToolTiers.ALEXANDRITE, new Item.Properties().attributes(PaxelItem.createAttributes(ModToolTiers.ALEXANDRITE, 5f, -2.4f))));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -169,8 +169,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.ALEXANDRITE_SHOVEL.get())
                 .define('A', ModItems.ALEXANDRITE_AXE.get())
                 .define('I', Items.STICK)
-                .unlockedBy("has_alexandrite_pickaxe", has(ModItems.ALEXANDRITE.get()))
+                .unlockedBy("has_alexandrite_pickaxe", has(ModItems.ALEXANDRITE_PICKAXE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_paxel"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ALEXANDRITE_HAMMER.get())
+                .pattern("#S#")
+                .pattern("#S#")
+                .pattern(" S ")
+                .define('#', ModItems.ALEXANDRITE.get())
+                .define('S', Items.STICK)
+                .unlockedBy("has_alexandrite", has(ModItems.ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID,"alexandrite_hammer"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_ALEXANDRITE.get(), 9)
                 .requires(ModBlocks.RAW_ALEXANDRITE_BLOCK.get())
