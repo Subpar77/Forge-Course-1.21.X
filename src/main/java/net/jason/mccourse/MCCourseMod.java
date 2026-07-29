@@ -2,6 +2,7 @@ package net.jason.mccourse;
 
 import com.mojang.logging.LogUtils;
 import net.jason.mccourse.block.ModBlocks;
+import net.jason.mccourse.item.ModArmorMaterials;
 import net.jason.mccourse.item.ModCreativeModeTabs;
 import net.jason.mccourse.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -35,6 +36,7 @@ public class MCCourseMod
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModArmorMaterials.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
