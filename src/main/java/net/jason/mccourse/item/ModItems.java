@@ -2,6 +2,7 @@ package net.jason.mccourse.item;
 
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.item.custom.*;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -51,6 +52,8 @@ public class ModItems {
     public static final RegistryObject<Item> ALEXANDRITE_HELMET = ITEMS.register("alexandrite_helmet",
             () -> new ModArmorItem(ModArmorMaterials.ALEXANDRITE.getHolder().get(), ArmorItem.Type.HELMET, new Item.Properties()));
 
+  public static final RegistryObject<Item> ALEXANDRITE_HORSE_ARMOR = ITEMS.register("alexandrite_horse_armor",
+            () -> new AnimalArmorItem(ModArmorMaterials.ALEXANDRITE.getHolder().get(), AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

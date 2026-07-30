@@ -2,6 +2,7 @@ package net.jason.mccourse;
 
 import com.mojang.logging.LogUtils;
 import net.jason.mccourse.block.ModBlocks;
+import net.jason.mccourse.enchantment.ModEnchantments;
 import net.jason.mccourse.item.ModArmorMaterials;
 import net.jason.mccourse.item.ModCreativeModeTabs;
 import net.jason.mccourse.item.ModItems;

@@ -17,6 +17,7 @@
   "item.mccourse.alexandrite_chestplate": "Alexandrite Chestplate",
   "item.mccourse.alexandrite_leggings": "Alexandrite Leggings",
   "item.mccourse.alexandrite_boots": "Alexandrite Boots",
+  "item.mccourse.alexandrite_horse_armor": "Alexandrite Horse Armor",
 
   "block.mccourse.alexandrite_block": "Block of Alexandrite",
   "block.mccourse.sound_block": "Sound Block",
@@ -39,6 +40,8 @@
   "item_group.mccourse.course_tab": "Course Tab",
 
   "item.mccourse.metal_detector.no_valuables": "No Valuables Found",
+
+  "enchantment.mccourse.lightning_striker": "Lightning Striker",
 
   "tooltip.mccourse.metal_detector.tooltip.shift": "Right Click on Blocks to find Valuables!",
   "tooltip.mccourse.metal_detector.tooltip": "Press §eSHIFT§r for more Information",
