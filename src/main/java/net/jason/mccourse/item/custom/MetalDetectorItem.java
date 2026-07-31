@@ -1,9 +1,13 @@
 package net.jason.mccourse.item.custom;
 
+import net.jason.mccourse.item.ModItems;
+import net.jason.mccourse.util.InventoryUtil;
 import net.jason.mccourse.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -12,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -39,6 +44,10 @@ public class MetalDetectorItem extends Item {
                     outputValuableCoordinates(positionClicked.below(i), player, blockState.getBlock());
                     foundBlock = true;
 
+                    if(InventoryUtil.hasPlayerStackInInventory(player, ModItems.DATA_TABLET.get())) {
+                        addDataToDataTablet(player, positionClicked.below(i), blockState.getBlock());
+                    }
+
                     break;
                 }
             }
@@ -52,6 +61,16 @@ public class MetalDetectorItem extends Item {
         pContext.getItemInHand().hurtAndBreak(1, pContext.getPlayer(), slot);
 
         return InteractionResult.SUCCESS;
+    }
+
+    private void addDataToDataTablet(Player player, BlockPos below, Block block) {
+        ItemStack dataTablet = player.getInventory().getItem(InventoryUtil.getFirstInventoryIndex(player, ModItems.DATA_TABLET.get()));
+
+        CompoundTag data = new CompoundTag();
+        data.putString("mccourse.found_ore", "Valuable Found: " + I18n.get(block.getDescriptionId())
+                + " at (" + below.getX() + ", " + below.getY() + ", " + below.getZ() + ")");
+
+        CustomData.set(DataComponents.CUSTOM_DATA, dataTablet, data);
     }
 
     @Override

@@ -55,6 +55,9 @@ public class ModItems {
   public static final RegistryObject<Item> ALEXANDRITE_HORSE_ARMOR = ITEMS.register("alexandrite_horse_armor",
             () -> new AnimalArmorItem(ModArmorMaterials.ALEXANDRITE.getHolder().get(), AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties()));
 
+  public static final RegistryObject<Item> DATA_TABLET = ITEMS.register("data_tablet",
+            () -> new DataTabletItem(new Item.Properties().stacksTo(1)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
