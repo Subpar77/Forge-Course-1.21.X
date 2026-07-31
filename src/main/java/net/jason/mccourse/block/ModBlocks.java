@@ -2,6 +2,7 @@ package net.jason.mccourse.block;
 
 import com.mojang.blaze3d.shaders.Uniform;
 import net.jason.mccourse.MCCourseMod;
+import net.jason.mccourse.block.custom.AlexandriteLampBlock;
 import net.jason.mccourse.block.custom.SoundBlock;
 import net.jason.mccourse.item.ModItems;
 import net.minecraft.sounds.SoundEvents;
@@ -88,6 +89,10 @@ public class ModBlocks {
             () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> ALEXANDRITE_TRAPDOOR = registerBlock("alexandrite_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+
+    public static final RegistryObject<Block> ALEXANDRITE_LAMP = registerBlock("alexandrite_lamp",
+            () -> new AlexandriteLampBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.GLASS)
+                    .lightLevel(state -> state.getValue(AlexandriteLampBlock.CLICKED) ? 15 : 0)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
