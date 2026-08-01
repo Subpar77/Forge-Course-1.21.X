@@ -3,6 +3,7 @@ package net.jason.mccourse.block;
 import com.mojang.blaze3d.shaders.Uniform;
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.custom.AlexandriteLampBlock;
+import net.jason.mccourse.block.custom.KohlrabiCropBlock;
 import net.jason.mccourse.block.custom.SoundBlock;
 import net.jason.mccourse.item.ModItems;
 import net.minecraft.sounds.SoundEvents;
@@ -93,6 +94,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> ALEXANDRITE_LAMP = registerBlock("alexandrite_lamp",
             () -> new AlexandriteLampBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.GLASS)
                     .lightLevel(state -> state.getValue(AlexandriteLampBlock.CLICKED) ? 15 : 0)));
+
+    public static final RegistryObject<Block> KOHLRABI_CROP = BLOCKS.register("kholrabi_crop",
+            () -> new KohlrabiCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noCollission().noOcclusion()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
