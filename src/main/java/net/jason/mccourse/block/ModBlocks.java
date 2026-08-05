@@ -3,6 +3,7 @@ package net.jason.mccourse.block;
 import com.mojang.blaze3d.shaders.Uniform;
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.custom.AlexandriteLampBlock;
+import net.jason.mccourse.block.custom.GemEmpowerStationBlock;
 import net.jason.mccourse.block.custom.KohlrabiCropBlock;
 import net.jason.mccourse.block.custom.SoundBlock;
 import net.jason.mccourse.item.ModItems;
@@ -105,6 +106,9 @@ public class ModBlocks {
             () -> new FlowerBlock(MobEffects.BLINDNESS, 6, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
     public static final RegistryObject<Block> POTTED_SNAPDRAGON = BLOCKS.register("potted_snapdragon",
             () -> new FlowerPotBlock((() -> (FlowerPotBlock) Blocks.FLOWER_POT), SNAPDRAGON, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
+
+    public static final RegistryObject<Block> GEM_EMPOWERING_STATION = registerBlock("gem_empowering_station",
+            () -> new GemEmpowerStationBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

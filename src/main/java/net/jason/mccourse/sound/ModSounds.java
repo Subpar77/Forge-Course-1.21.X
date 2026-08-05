@@ -23,6 +23,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ALEXANDRITE_LAMP_PLACE = registerSoundEvent("alexandrite_lamp_place");
     public static final RegistryObject<SoundEvent> ALEXANDRITE_LAMP_HIT = registerSoundEvent("alexandrite_lamp_hit");
 
+    public static final RegistryObject<SoundEvent> BAR_BRAWL = registerSoundEvent("bar_brawl");
+
     public static final ForgeSoundType ALEXANDRITE_LAMP_SOUNDS = new ForgeSoundType(1f, 1f,
             ModSounds.ALEXANDRITE_LAMP_BREAK, ModSounds.ALEXANDRITE_LAMP_STEP, ModSounds.ALEXANDRITE_LAMP_PLACE,
             ModSounds.ALEXANDRITE_LAMP_HIT, ModSounds.ALEXANDRITE_LAMP_FALL);

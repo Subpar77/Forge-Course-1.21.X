@@ -3,6 +3,8 @@ package net.jason.mccourse.item;
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.item.custom.*;
+import net.jason.mccourse.jukebox_song.ModJukeboxSongs;
+import net.jason.mccourse.sound.ModSounds;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -60,6 +62,12 @@ public class ModItems {
             () -> new DataTabletItem(new Item.Properties().stacksTo(1)));
   public static final RegistryObject<Item> KOHLRABI_SEEDS = ITEMS.register("kohlrabi_seeds",
             () -> new ItemNameBlockItem(ModBlocks.KOHLRABI_CROP.get(), new Item.Properties()));
+
+  public static final RegistryObject<Item> BAR_BRAWL_RECORD = ITEMS.register("bar_brawl_record",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ModJukeboxSongs.BAR_BRAWL)));
+
+public static final RegistryObject<Item> RADIATION_STAFF = ITEMS.register("radiation_staff",
+        () -> new Item(new Item.Properties().durability(1024)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
