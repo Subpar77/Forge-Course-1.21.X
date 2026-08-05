@@ -7,6 +7,7 @@ import net.jason.mccourse.item.ModArmorMaterials;
 import net.jason.mccourse.item.ModCreativeModeTabs;
 import net.jason.mccourse.item.ModItemProperties;
 import net.jason.mccourse.item.ModItems;
+import net.jason.mccourse.sound.ModSounds;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -43,6 +44,7 @@ public class MCCourseMod
         ModArmorMaterials.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
+        ModSounds.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
