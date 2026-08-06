@@ -36,6 +36,8 @@ public class ModCreativeModeTabs {
                     output.accept(ModItems.DATA_TABLET.get());
                     output.accept(ModItems.BAR_BRAWL_RECORD.get());
                     output.accept(ModItems.RADIATION_STAFF.get());
+                    output.accept(ModItems.ALEXANDRITE_BOW.get());
+                    output.accept(ModItems.ALEXANDRITE_SHIELD.get());
 
                     output.accept(ModItems.ALEXANDRITE_HELMET.get());
                     output.accept(ModItems.ALEXANDRITE_CHESTPLATE.get());
