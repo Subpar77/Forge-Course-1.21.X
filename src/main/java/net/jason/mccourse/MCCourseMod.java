@@ -8,6 +8,7 @@ import net.jason.mccourse.item.ModCreativeModeTabs;
 import net.jason.mccourse.item.ModItemProperties;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.loot.ModLootModifiers;
+import net.jason.mccourse.painting.ModPaintings;
 import net.jason.mccourse.sound.ModSounds;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
