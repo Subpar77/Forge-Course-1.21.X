@@ -10,14 +10,20 @@ import net.jason.mccourse.item.ModItemProperties;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.loot.ModLootModifiers;
 import net.jason.mccourse.painting.ModPaintings;
+import net.jason.mccourse.potion.BetterBrewingRecipe;
+import net.jason.mccourse.potion.ModPotions;
 import net.jason.mccourse.sound.ModSounds;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipe;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,6 +33,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MCCourseMod.MOD_ID)
@@ -50,6 +57,7 @@ public class MCCourseMod
         ModSounds.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModPotions.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -68,9 +76,14 @@ public class MCCourseMod
 
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SNAPDRAGON.getId(), ModBlocks.POTTED_SNAPDRAGON);
 
+
         });
 
+    }
 
+    @SubscribeEvent
+    public void onBrewingRecipeRegister(BrewingRecipeRegisterEvent event) {
+        event.getBuilder().add(new BetterBrewingRecipe(Potions.AWKWARD, Items.SLIME_BALL, ModPotions.SLIMEY_POTION.getHolder().get()));
     }
 
     // Add the example block item to the building blocks tab

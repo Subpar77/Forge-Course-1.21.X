@@ -60,6 +60,11 @@
 
   "effect.mccourse.slimey": "Slimey",
 
+  "item.minecraft.potion.effect.slimey_potion": "Slimey Potion",
+  "item.minecraft.splash_potion.effect.slimey_potion": "Slimey Splash Potion",
+  "item.minecraft.lingering_potion.effect.slimey_potion": "Slimey Lingering Potion",
+
+
   "sounds.mccourse.metal_detector_found_ore": "Metal Detector Found an Ore",
   "item.mccourse.bar_brawl_record": "Bar Brawl Music Disc",
   "jukebox_song.mccourse.bar_brawl": "Bryan Tech - Bar Brawl (CC0)",
