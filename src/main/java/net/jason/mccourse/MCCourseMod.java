@@ -2,6 +2,7 @@ package net.jason.mccourse;
 
 import com.mojang.logging.LogUtils;
 import net.jason.mccourse.block.ModBlocks;
+import net.jason.mccourse.effect.ModEffects;
 import net.jason.mccourse.enchantment.ModEnchantments;
 import net.jason.mccourse.item.ModArmorMaterials;
 import net.jason.mccourse.item.ModCreativeModeTabs;
@@ -48,6 +49,7 @@ public class MCCourseMod
         modEventBus.addListener(this::commonSetup);
         ModSounds.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModEffects.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 

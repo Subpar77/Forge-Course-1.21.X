@@ -1,4 +1,4 @@
-{
+  {
   "item.mccourse.alexandrite": "Alexandrite",
   "item.mccourse.raw_alexandrite": "Raw Alexandrite",
   "item.mccourse.metal_detector": "Metal Detector",
@@ -34,9 +34,9 @@
 
   "painting.mccourse.world.title": "World",
   "painting.mccourse.world.author": "NanoAttack",
-"painting.mccourse.shrimp.title": "Shrimp",
+  "painting.mccourse.shrimp.title": "Shrimp",
   "painting.mccourse.shrimp.author": "NanoAttack",
-"painting.mccourse.saw_them.title": "Saw Them",
+  "painting.mccourse.saw_them.title": "Saw Them",
   "painting.mccourse.saw_them.author": "NanoAttack",
 
   "block.mccourse.alexandrite_stairs": "Alexandrite Stairs",
@@ -58,6 +58,8 @@
 
   "enchantment.mccourse.lightning_striker": "Lightning Striker",
 
+  "effect.mccourse.slimey": "Slimey",
+
   "sounds.mccourse.metal_detector_found_ore": "Metal Detector Found an Ore",
   "item.mccourse.bar_brawl_record": "Bar Brawl Music Disc",
   "jukebox_song.mccourse.bar_brawl": "Bryan Tech - Bar Brawl (CC0)",
@@ -65,4 +67,4 @@
   "tooltip.mccourse.metal_detector.tooltip.shift": "Right Click on Blocks to find Valuables!",
   "tooltip.mccourse.metal_detector.tooltip": "Press §eSHIFT§r for more Information",
   "tooltip.mccourse.sound_block": "Plays nice sounds when walked on or right-clicking."
-}
+  }
