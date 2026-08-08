@@ -2,10 +2,12 @@ package net.jason.mccourse.event;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.jason.mccourse.MCCourseMod;
+import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.command.ReturnHomeCommand;
 import net.jason.mccourse.command.SetHomeCommand;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.item.custom.HammerItem;
+import net.jason.mccourse.villager.ModVillagers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -114,6 +116,16 @@ public class ModEvents {
 
             trades.get(villagerLevel).add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 12), stack, 2, 5, 0.06f
+            ));
+        }
+
+        if (event.getType() == ModVillagers.SOUND_MASTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack stack = new ItemStack(ModBlocks.SOUND_BLOCK.get(), 1);
+            int villagerLevel = 1;
+
+            trades.get(villagerLevel).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 25), stack, 2, 5, 0.06f
             ));
         }
     }

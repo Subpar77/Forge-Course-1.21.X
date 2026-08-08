@@ -13,6 +13,7 @@ import net.jason.mccourse.painting.ModPaintings;
 import net.jason.mccourse.potion.BetterBrewingRecipe;
 import net.jason.mccourse.potion.ModPotions;
 import net.jason.mccourse.sound.ModSounds;
+import net.jason.mccourse.villager.ModVillagers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -58,6 +59,7 @@ public class MCCourseMod
         ModLootModifiers.register(modEventBus);
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
+        ModVillagers.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
