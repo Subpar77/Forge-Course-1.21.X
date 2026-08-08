@@ -10,6 +10,7 @@ import net.jason.mccourse.item.ModItemProperties;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.loot.ModLootModifiers;
 import net.jason.mccourse.painting.ModPaintings;
+import net.jason.mccourse.particle.ModParticles;
 import net.jason.mccourse.potion.BetterBrewingRecipe;
 import net.jason.mccourse.potion.ModPotions;
 import net.jason.mccourse.sound.ModSounds;
@@ -60,6 +61,7 @@ public class MCCourseMod
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
         ModVillagers.register(modEventBus);
+        ModParticles.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
