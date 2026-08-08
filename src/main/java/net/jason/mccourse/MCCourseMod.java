@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.effect.ModEffects;
 import net.jason.mccourse.enchantment.ModEnchantments;
+import net.jason.mccourse.fluid.ModFluidTypes;
+import net.jason.mccourse.fluid.ModFluids;
 import net.jason.mccourse.item.ModArmorMaterials;
 import net.jason.mccourse.item.ModCreativeModeTabs;
 import net.jason.mccourse.item.ModItemProperties;
@@ -15,6 +17,8 @@ import net.jason.mccourse.potion.BetterBrewingRecipe;
 import net.jason.mccourse.potion.ModPotions;
 import net.jason.mccourse.sound.ModSounds;
 import net.jason.mccourse.villager.ModVillagers;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -62,6 +66,8 @@ public class MCCourseMod
         ModPotions.register(modEventBus);
         ModVillagers.register(modEventBus);
         ModParticles.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -123,6 +129,10 @@ public class MCCourseMod
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
                 ModItemProperties.addCustomItemProperties();
+
+                ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_SOAP_WATER.get(), RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
+
             });
         }
     }

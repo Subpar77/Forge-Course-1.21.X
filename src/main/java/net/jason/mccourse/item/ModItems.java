@@ -2,6 +2,7 @@ package net.jason.mccourse.item;
 
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.ModBlocks;
+import net.jason.mccourse.fluid.ModFluids;
 import net.jason.mccourse.item.custom.*;
 import net.jason.mccourse.jukebox_song.ModJukeboxSongs;
 import net.jason.mccourse.sound.ModSounds;
@@ -72,6 +73,9 @@ public static final RegistryObject<Item> ALEXANDRITE_BOW = ITEMS.register("alexa
         () -> new BowItem(new Item.Properties().durability(500)));
 public static final RegistryObject<Item> ALEXANDRITE_SHIELD = ITEMS.register("alexandrite_shield",
         () -> new ShieldItem(new Item.Properties().durability(500)));
+
+public static final RegistryObject<Item> SOAP_WATER_BUCKET = ITEMS.register("soap_water_bucket",
+        () -> new BucketItem(ModFluids.SOURCE_SOAP_WATER, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
