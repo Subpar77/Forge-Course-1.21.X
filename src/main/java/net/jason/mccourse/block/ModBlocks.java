@@ -1,6 +1,5 @@
 package net.jason.mccourse.block;
 
-import com.mojang.blaze3d.shaders.Uniform;
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.custom.AlexandriteLampBlock;
 import net.jason.mccourse.block.custom.GemEmpowerStationBlock;

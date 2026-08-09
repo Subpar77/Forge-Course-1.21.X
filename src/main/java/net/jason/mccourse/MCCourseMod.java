@@ -2,8 +2,8 @@ package net.jason.mccourse;
 
 import com.mojang.logging.LogUtils;
 import net.jason.mccourse.block.ModBlocks;
+import net.jason.mccourse.block.entity.ModBlockEntities;
 import net.jason.mccourse.effect.ModEffects;
-import net.jason.mccourse.enchantment.ModEnchantments;
 import net.jason.mccourse.fluid.ModFluidTypes;
 import net.jason.mccourse.fluid.ModFluids;
 import net.jason.mccourse.item.ModArmorMaterials;
@@ -11,12 +11,14 @@ import net.jason.mccourse.item.ModCreativeModeTabs;
 import net.jason.mccourse.item.ModItemProperties;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.loot.ModLootModifiers;
-import net.jason.mccourse.painting.ModPaintings;
 import net.jason.mccourse.particle.ModParticles;
 import net.jason.mccourse.potion.BetterBrewingRecipe;
 import net.jason.mccourse.potion.ModPotions;
+import net.jason.mccourse.screen.GemEmpoweringStationScreen;
+import net.jason.mccourse.screen.ModMenuTypes;
 import net.jason.mccourse.sound.ModSounds;
 import net.jason.mccourse.villager.ModVillagers;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -27,7 +29,6 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.brewing.BrewingRecipe;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -68,6 +69,8 @@ public class MCCourseMod
         ModParticles.register(modEventBus);
         ModFluidTypes.register(modEventBus);
         ModFluids.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -132,6 +135,8 @@ public class MCCourseMod
 
                 ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_SOAP_WATER.get(), RenderType.translucent());
                 ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
+
+                MenuScreens.register(ModMenuTypes.GEM_EMPOWERING_MENU.get(), GemEmpoweringStationScreen::new);
 
             });
         }

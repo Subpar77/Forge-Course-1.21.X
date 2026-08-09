@@ -1,41 +1,61 @@
 package net.jason.mccourse.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.jason.mccourse.block.entity.GemEmpoweringStationBlockEntity;
+import net.jason.mccourse.block.entity.ModBlockEntities;
+import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.component.FireworkExplosion;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
 import javax.annotation.Nullable;
 
-public class GemEmpowerStationBlock extends HorizontalDirectionalBlock {
+public class GemEmpowerStationBlock extends BaseEntityBlock {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final MapCodec<GemEmpowerStationBlock> CODEC = simpleCodec(GemEmpowerStationBlock::new);
+
+    public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 12, 16);
 
     public GemEmpowerStationBlock(Properties properties) {
         super(properties);
-
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 12, 16);
+    public BlockState rotate(BlockState pState, Rotation pRot) {
+        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
+    }
+
+    protected BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
 
     @Override
     protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
     }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
-    }
-
 
     @Nullable
     @Override
@@ -46,5 +66,52 @@ public class GemEmpowerStationBlock extends HorizontalDirectionalBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING);
+    }
+
+    /* BLOCK ENTITY */
+
+    @Override
+    protected RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
+    @Override
+    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof GemEmpoweringStationBlockEntity) {
+                ((GemEmpoweringStationBlockEntity) blockEntity).drops();
+            }
+        }
+
+        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
+        if (!pLevel.isClientSide()) {
+            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            if(entity instanceof GemEmpoweringStationBlockEntity station && pPlayer instanceof ServerPlayer serverPlayer) {
+                serverPlayer.openMenu(station, buf -> buf.writeBlockPos(pPos));
+            }
+        }
+
+        return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new GemEmpoweringStationBlockEntity(pPos, pState);
+    }
+
+    @Override
+    public @org.jetbrains.annotations.Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        if(pLevel.isClientSide()) {
+            return null;
+        }
+
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.GEM_EMPOWERINGSTATION_BE.get(), (pLevel1, pPos, pState1, pBlockEntity) ->
+                pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 }
