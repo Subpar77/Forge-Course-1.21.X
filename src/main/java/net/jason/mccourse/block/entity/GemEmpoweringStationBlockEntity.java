@@ -1,6 +1,9 @@
 package net.jason.mccourse.block.entity;
 
 import net.jason.mccourse.item.ModItems;
+import net.jason.mccourse.recipe.GemEmpoweringRecipe;
+import net.jason.mccourse.recipe.GemEmpoweringRecipeInput;
+import net.jason.mccourse.recipe.ModRecipes;
 import net.jason.mccourse.screen.GemEmpoweringStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,6 +20,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -29,6 +33,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class GemEmpoweringStationBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
@@ -39,8 +45,7 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.getItem() == ModItems.RAW_ALEXANDRITE.get();
-                case 1 -> true;
+                case 0, 1 -> true;
                 case 2 -> false;
                 case 3 -> stack.getItem() == ModItems.KOHLRABI.get();
                     default -> super.isItemValid(slot, stack);
@@ -158,10 +163,13 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
 
 
     private void craftItem() {
+        Optional<RecipeHolder<GemEmpoweringRecipe>> recipe = getCurrentRecipe();
+        ItemStack resultItem = recipe.get().value().getResultItem(getLevel().registryAccess());
+
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(ModItems.ALEXANDRITE.get(),
-                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + 1));
+        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(resultItem.getItem(),
+                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + resultItem.getCount()));
     }
 
     private void resetProgress() {
@@ -177,12 +185,22 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
     }
 
     private boolean hasRecipe() {
-        return canInsertAmountIntoOutputSlot(1) && canInsertItemIntoOutputSlot(ModItems.ALEXANDRITE.get())
-                && hasRecipeItemInInputSlot();
+        Optional<RecipeHolder<GemEmpoweringRecipe>> recipe = getCurrentRecipe();
+
+
+        if (recipe.isEmpty()) {
+            return false;
+        }
+        ItemStack resultItem = recipe.get().value().getResultItem(getLevel().registryAccess());
+
+        return canInsertAmountIntoOutputSlot(resultItem.getCount())
+                && canInsertItemIntoOutputSlot(resultItem.getItem());
     }
 
-    private boolean hasRecipeItemInInputSlot() {
-        return this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.RAW_ALEXANDRITE.get();
+    private Optional<RecipeHolder<GemEmpoweringRecipe>> getCurrentRecipe() {
+        GemEmpoweringRecipeInput input = new GemEmpoweringRecipeInput(this.itemHandler.getStackInSlot(INPUT_SLOT));
+
+        return this.level.getRecipeManager().getRecipeFor(ModRecipes.GEM_EMPOWERING_TYPE.get(), input, level);
     }
 
     private boolean canInsertItemIntoOutputSlot(@NotNull Item item) {
@@ -190,8 +208,9 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
     }
 
     private boolean canInsertAmountIntoOutputSlot(int count) {
-        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize() >=
-                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count;
+        ItemStack outputStack = this.itemHandler.getStackInSlot(OUTPUT_SLOT);
+
+        return outputStack.isEmpty() || outputStack.getMaxStackSize() >= outputStack.getCount() + count;
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {

@@ -14,6 +14,7 @@ import net.jason.mccourse.loot.ModLootModifiers;
 import net.jason.mccourse.particle.ModParticles;
 import net.jason.mccourse.potion.BetterBrewingRecipe;
 import net.jason.mccourse.potion.ModPotions;
+import net.jason.mccourse.recipe.ModRecipes;
 import net.jason.mccourse.screen.GemEmpoweringStationScreen;
 import net.jason.mccourse.screen.ModMenuTypes;
 import net.jason.mccourse.sound.ModSounds;
@@ -71,6 +72,7 @@ public class MCCourseMod
         ModFluids.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 

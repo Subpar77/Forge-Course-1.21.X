@@ -2,6 +2,7 @@ package net.jason.mccourse.datagen;
 
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.ModBlocks;
+import net.jason.mccourse.datagen.custom.GemEmpoweringRecipeBuilder;
 import net.jason.mccourse.item.ModItems;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
@@ -193,6 +194,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmeltingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 200, "alexandrite");
         oreBlastingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 100, "alexandrite");
+
+        new GemEmpoweringRecipeBuilder(ModItems.RAW_ALEXANDRITE.get(), ModItems.ALEXANDRITE.get(), 3)
+                .unlockedBy("has_raw_alexandrite", has(ModItems.RAW_ALEXANDRITE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "alexandrite_from_gem_empowering"));
+
+        new GemEmpoweringRecipeBuilder(Items.COAL, Items.DIAMOND, 7)
+                .unlockedBy("has_diamond", has(Items.DIAMOND))
+                .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "diamond_from_gem_empowering"));
 
     }
 
