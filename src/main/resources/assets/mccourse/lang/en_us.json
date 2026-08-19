@@ -60,6 +60,9 @@
   "block.mccourse.walnut_leaves": "Walnut Leave",
   "block.mccourse.walnut_sapling": "Walnut Sapling",
 
+  "block.mccourse.walnut_sign": "Walnut Sign",
+  "block.mccourse.walnut_hanging_sign": "Walnut Hanging Sign",
+
   "item_group.mccourse.course_tab": "Course Tab",
 
   "item.mccourse.metal_detector.no_valuables": "No Valuables Found",

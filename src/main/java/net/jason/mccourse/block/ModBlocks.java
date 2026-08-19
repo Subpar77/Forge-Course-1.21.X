@@ -5,6 +5,7 @@ import net.jason.mccourse.block.custom.*;
 import net.jason.mccourse.fluid.ModFluids;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.sound.ModSounds;
+import net.jason.mccourse.util.ModWoodTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -161,6 +162,16 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> WALNUT_SAPLING = registerBlock("walnut_sapling",
             () -> new SaplingBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+    public static final RegistryObject<Block> WALNUT_SIGN = BLOCKS.register("walnut_sign",
+            () -> new ModStandingSignBlock(ModWoodTypes.WALNUT ,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
+    public static final RegistryObject<Block> WALNUT_WALL_SIGN = BLOCKS.register("walnut_wall_sign",
+            () -> new ModWallSignBlock(ModWoodTypes.WALNUT ,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
+
+    public static final RegistryObject<Block> WALNUT_HANGING_SIGN = BLOCKS.register("walnut_hanging_sign",
+            () -> new ModHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN), ModWoodTypes.WALNUT));
+    public static final RegistryObject<Block> WALNUT_WALL_HANGING_SIGN = BLOCKS.register("walnut_wall_hanging_sign",
+            () -> new ModWallHangingSignBlock(ModWoodTypes.WALNUT ,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
