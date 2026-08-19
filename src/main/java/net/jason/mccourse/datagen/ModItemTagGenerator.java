@@ -1,11 +1,14 @@
 package net.jason.mccourse.datagen;
 
+import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +32,15 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ModItems.ALEXANDRITE_SWORD.get());
         this.tag(Tags.Items.MUSIC_DISCS)
                 .add(ModItems.BAR_BRAWL_RECORD.get());
+
+        this.tag(ItemTags.LOGS_THAT_BURN)
+                .add(Item.byBlock(ModBlocks.WALNUT_LOG.get()))
+                .add(Item.byBlock(ModBlocks.WALNUT_WOOD.get()))
+                .add(Item.byBlock(ModBlocks.STRIPPED_WALNUT_LOG.get()))
+                .add(Item.byBlock(ModBlocks.STRIPPED_WALNUT_WOOD.get()));
+
+        this.tag(ItemTags.PLANKS)
+                .add(Item.byBlock(ModBlocks.WALNUT_PLANKS.get()));
     }
 
     @Override

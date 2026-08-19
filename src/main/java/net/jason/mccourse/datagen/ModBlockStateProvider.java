@@ -4,6 +4,7 @@ import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.block.custom.AlexandriteLampBlock;
 import net.jason.mccourse.block.custom.KohlrabiCropBlock;
+import net.jason.mccourse.block.custom.ModFlammableRotatedPillarBlock;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -63,7 +64,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         horizontalBlock(ModBlocks.GEM_EMPOWERING_STATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/gem_empowering_station")));
+        
+        logBlock(((ModFlammableRotatedPillarBlock) ModBlocks.WALNUT_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.WALNUT_WOOD.get()), blockTexture(ModBlocks.WALNUT_LOG.get()), blockTexture(ModBlocks.WALNUT_LOG.get()));
+        axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_WALNUT_LOG.get(), ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "block/stripped_walnut_log"),
+                ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "block/stripped_walnut_log_top"));
+        axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_WALNUT_WOOD.get(), ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "block/stripped_walnut_log"),
+                ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "block/stripped_walnut_log"));
 
+        blockItem(ModBlocks.WALNUT_LOG);
+        blockItem(ModBlocks.WALNUT_WOOD);
+        blockItem(ModBlocks.STRIPPED_WALNUT_LOG);
+        blockItem(ModBlocks.STRIPPED_WALNUT_WOOD);
+
+        blockWithItem(ModBlocks.WALNUT_PLANKS);
+
+        leavesBlock(ModBlocks.WALNUT_LEAVES);
+        saplingBlock(ModBlocks.WALNUT_SAPLING);
+
+    }
+
+    private void leavesBlock(RegistryObject<Block> blockRegistryObject) {
+        simpleBlockWithItem(blockRegistryObject.get(),
+                models().cubeAll(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    }
+    private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {

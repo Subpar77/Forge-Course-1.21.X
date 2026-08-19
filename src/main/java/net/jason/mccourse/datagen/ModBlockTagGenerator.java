@@ -71,6 +71,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
                 .add(ModBlocks.NETHER_ALEXANDRITE_ORE.get());
 
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.WALNUT_LOG.get())
+                .add(ModBlocks.WALNUT_WOOD.get())
+                .add(ModBlocks.STRIPPED_WALNUT_LOG.get())
+                .add(ModBlocks.STRIPPED_WALNUT_WOOD.get());
+
+        this.tag(BlockTags.PLANKS)
+                .add(ModBlocks.WALNUT_PLANKS.get());
+
     }
 
     @Override

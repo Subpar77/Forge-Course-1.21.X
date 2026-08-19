@@ -56,6 +56,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         complexBlock(ModBlocks.GEM_EMPOWERING_STATION.get());
 
+        saplingItem(ModBlocks.WALNUT_SAPLING);
+
+    }
+
+    private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.withDefaultNamespace("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "block/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder complexBlock(Block block) {
