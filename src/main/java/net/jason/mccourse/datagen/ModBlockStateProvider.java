@@ -85,7 +85,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         signBlock(((StandingSignBlock) ModBlocks.WALNUT_SIGN.get()), ((WallSignBlock) ModBlocks.WALNUT_WALL_SIGN.get()),
                 blockTexture(ModBlocks.WALNUT_PLANKS.get()));
 
-        hangingSignBlock(ModBlocks.WALNUT_HANGING_SIGN.get(), ModBlocks.WALNUT_WALL_SIGN.get(),
+        hangingSignBlock(ModBlocks.WALNUT_HANGING_SIGN.get(), ModBlocks.WALNUT_WALL_HANGING_SIGN.get(),
                 blockTexture(ModBlocks.WALNUT_PLANKS.get()));
 
     }

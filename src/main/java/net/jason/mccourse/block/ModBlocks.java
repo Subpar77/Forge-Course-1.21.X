@@ -6,6 +6,7 @@ import net.jason.mccourse.fluid.ModFluids;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.sound.ModSounds;
 import net.jason.mccourse.util.ModWoodTypes;
+import net.jason.mccourse.worldgen.tree.WalnutTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -161,7 +163,7 @@ public class ModBlocks {
             });
 
     public static final RegistryObject<Block> WALNUT_SAPLING = registerBlock("walnut_sapling",
-            () -> new SaplingBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+            () -> new SaplingBlock(WalnutTreeGrower.WALNUT, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
     public static final RegistryObject<Block> WALNUT_SIGN = BLOCKS.register("walnut_sign",
             () -> new ModStandingSignBlock(ModWoodTypes.WALNUT ,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
