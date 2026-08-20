@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.block.entity.ModBlockEntities;
 import net.jason.mccourse.effect.ModEffects;
+import net.jason.mccourse.entity.ModEntities;
+import net.jason.mccourse.entity.client.RhinoRenderer;
 import net.jason.mccourse.fluid.ModFluidTypes;
 import net.jason.mccourse.fluid.ModFluids;
 import net.jason.mccourse.item.ModArmorMaterials;
@@ -24,6 +26,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -75,6 +78,7 @@ public class MCCourseMod
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -144,6 +148,7 @@ public class MCCourseMod
 
                 MenuScreens.register(ModMenuTypes.GEM_EMPOWERING_MENU.get(), GemEmpoweringStationScreen::new);
 
+                EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
             });
         }
     }

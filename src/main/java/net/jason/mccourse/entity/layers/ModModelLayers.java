@@ -1,0 +1,12 @@
+package net.jason.mccourse.entity.layers;
+
+import net.jason.mccourse.MCCourseMod;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.resources.ResourceLocation;
+
+public class ModModelLayers {
+    public static final ModelLayerLocation RHINO_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "rhino_layer"), "rhino_layer");
+
+
+}
