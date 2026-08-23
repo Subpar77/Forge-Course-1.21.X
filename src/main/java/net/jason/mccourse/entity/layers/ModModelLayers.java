@@ -8,5 +8,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation RHINO_LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "rhino_layer"), "rhino_layer");
 
+    public static final ModelLayerLocation MAGIC_PROJECTILE_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "magic_projectile_layer"), "magic_projectile_layer");
+
 
 }

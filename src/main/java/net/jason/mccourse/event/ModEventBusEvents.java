@@ -3,6 +3,7 @@ package net.jason.mccourse.event;
 
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.entity.ModEntities;
+import net.jason.mccourse.entity.client.MagicProjectileModel;
 import net.jason.mccourse.entity.client.RhinoModel;
 import net.jason.mccourse.entity.custom.RhinoEntity;
 import net.jason.mccourse.entity.layers.ModModelLayers;
@@ -22,6 +23,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayers.RHINO_LAYER, RhinoModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.MAGIC_PROJECTILE_LAYER, MagicProjectileModel::createBodyLayer);
     }
 
     @SubscribeEvent

@@ -5,6 +5,7 @@ import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.block.entity.ModBlockEntities;
 import net.jason.mccourse.effect.ModEffects;
 import net.jason.mccourse.entity.ModEntities;
+import net.jason.mccourse.entity.client.MagicProjectileRenderer;
 import net.jason.mccourse.entity.client.RhinoRenderer;
 import net.jason.mccourse.fluid.ModFluidTypes;
 import net.jason.mccourse.fluid.ModFluids;
@@ -151,6 +152,7 @@ public class MCCourseMod
 
                 EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
                 EntityRenderers.register(ModEntities.DICE_PROJECTILE.get(), ThrownItemRenderer::new);
+                EntityRenderers.register(ModEntities.MAGIC_PROJECTILE.get(), MagicProjectileRenderer::new);
             });
         }
     }

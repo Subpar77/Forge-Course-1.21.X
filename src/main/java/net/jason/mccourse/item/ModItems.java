@@ -70,7 +70,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ModJukeboxSongs.BAR_BRAWL)));
 
 public static final RegistryObject<Item> RADIATION_STAFF = ITEMS.register("radiation_staff",
-        () -> new Item(new Item.Properties().durability(1024)));
+        () -> new RadiationStaffItem(new Item.Properties().durability(1024)));
+
 public static final RegistryObject<Item> ALEXANDRITE_BOW = ITEMS.register("alexandrite_bow",
         () -> new BowItem(new Item.Properties().durability(500)));
 public static final RegistryObject<Item> ALEXANDRITE_SHIELD = ITEMS.register("alexandrite_shield",
