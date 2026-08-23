@@ -175,6 +175,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> WALNUT_WALL_HANGING_SIGN = BLOCKS.register("walnut_wall_hanging_sign",
             () -> new ModWallHangingSignBlock(ModWoodTypes.WALNUT ,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
 
+    public static final RegistryObject<Block> DICE_BLOCK = BLOCKS.register("dice_block",
+            () -> new DiceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noLootTable()));
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

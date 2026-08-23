@@ -88,6 +88,9 @@ public static final RegistryObject<Item> WALNUT_HANGING_SIGN = ITEMS.register("w
             () -> new ForgeSpawnEggItem(ModEntities.RHINO, 0x7e9680, 0xc5d1c5,
                     new Item.Properties()));
 
+    public static final RegistryObject<Item> DICE = ITEMS.register("dice",
+            () -> new DiceItem(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

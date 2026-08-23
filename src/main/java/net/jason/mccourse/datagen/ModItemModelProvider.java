@@ -57,6 +57,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.ALEXANDRITE_DOOR);
         simpleBlockItem(ModBlocks.SNAPDRAGON);
 
+        simpleItem(ModItems.DICE);
+
         complexBlock(ModBlocks.GEM_EMPOWERING_STATION.get());
 
         saplingItem(ModBlocks.WALNUT_SAPLING);
