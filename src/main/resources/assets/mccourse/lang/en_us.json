@@ -24,6 +24,8 @@
   "item.mccourse.alexandrite_bow": "Alexandrite Bow",
   "item.mccourse.alexandrite_shield": "Alexandrite Shield",
   "item.mccourse.dice": "Dice",
+  "item.mccourse.walnut_boat": "Walnut Boat",
+  "item.mccourse.walnut_chest_boat": "Walnut Chest Boat",
 
  "item.mccourse.rhino_spawn_egg": "Rhino Spawn Egg",
  "entity.mccourse.rhino": "Rhino",
@@ -90,6 +92,8 @@
   "tooltip.mccourse.sound_block": "Plays nice sounds when walked on or right-clicking.",
 
   "entity.minecraft.villager.mccourse.soundmaster": "Soundmaster",
+
+  "entity.minecraft.mod_chest_boat": "Chest Boat",
 
   "mccourse.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "mccourse.tooltip.liquid.amount": "%s mB"

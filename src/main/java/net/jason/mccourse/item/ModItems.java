@@ -3,6 +3,7 @@ package net.jason.mccourse.item;
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.entity.ModEntities;
+import net.jason.mccourse.entity.custom.ModBoatEntity;
 import net.jason.mccourse.fluid.ModFluids;
 import net.jason.mccourse.item.custom.*;
 import net.jason.mccourse.jukebox_song.ModJukeboxSongs;
@@ -91,6 +92,11 @@ public static final RegistryObject<Item> WALNUT_HANGING_SIGN = ITEMS.register("w
 
     public static final RegistryObject<Item> DICE = ITEMS.register("dice",
             () -> new DiceItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> WALNUT_BOAT = ITEMS.register("walnut_boat",
+            () -> new ModBoatItem(false, ModBoatEntity.Type.WALNUT, new Item.Properties()));
+    public static final RegistryObject<Item> WALNUT_CHEST_BOAT = ITEMS.register("walnut_chest_boat",
+            () -> new ModBoatItem(true, ModBoatEntity.Type.WALNUT, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

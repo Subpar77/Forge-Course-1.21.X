@@ -46,6 +46,8 @@ public class ModCreativeModeTabs {
                     output.accept(ModItems.ALEXANDRITE_HORSE_ARMOR.get());
                     output.accept(ModItems.SOAP_WATER_BUCKET.get());
                     output.accept(ModItems.DICE.get());
+                    output.accept(ModItems.WALNUT_BOAT.get());
+                    output.accept(ModItems.WALNUT_CHEST_BOAT.get());
 
                     output.accept(ModItems.WALNUT_SIGN.get());
                     output.accept(ModItems.WALNUT_HANGING_SIGN.get());

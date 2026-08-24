@@ -58,6 +58,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.SNAPDRAGON);
 
         simpleItem(ModItems.DICE);
+        simpleItem(ModItems.WALNUT_BOAT);
+        simpleItem(ModItems.WALNUT_CHEST_BOAT);
 
         complexBlock(ModBlocks.GEM_EMPOWERING_STATION.get());
 
