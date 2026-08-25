@@ -24,6 +24,7 @@ import net.jason.mccourse.screen.ModMenuTypes;
 import net.jason.mccourse.sound.ModSounds;
 import net.jason.mccourse.util.ModWoodTypes;
 import net.jason.mccourse.villager.ModVillagers;
+import net.jason.mccourse.worldgen.tree.ModFoliagePlacerTypes;
 import net.jason.mccourse.worldgen.tree.ModTrunkPlacerTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -84,6 +85,7 @@ public class MCCourseMod
         ModRecipes.register(modEventBus);
         ModEntities.register(modEventBus);
         ModTrunkPlacerTypes.register(modEventBus);
+        ModFoliagePlacerTypes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
