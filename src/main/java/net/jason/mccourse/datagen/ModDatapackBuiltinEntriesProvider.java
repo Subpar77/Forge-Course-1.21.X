@@ -5,6 +5,7 @@ import net.jason.mccourse.enchantment.ModEnchantments;
 import net.jason.mccourse.worldgen.ModBiomeModifiers;
 import net.jason.mccourse.worldgen.ModConfiguredFeatures;
 import net.jason.mccourse.worldgen.ModPlacedFeatures;
+import net.jason.mccourse.worldgen.biome.ModBiomes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -27,6 +28,8 @@ public class ModDatapackBuiltinEntriesProvider
                             ModConfiguredFeatures::bootstrap)
                     .add(Registries.PLACED_FEATURE,
                             ModPlacedFeatures::bootstrap)
+                    .add(Registries.BIOME,
+                            ModBiomes::bootstrap)
                     .add(ForgeRegistries.Keys.BIOME_MODIFIERS,
                             ModBiomeModifiers::bootstrap);
 

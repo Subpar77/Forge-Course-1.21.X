@@ -28,16 +28,23 @@ authors="Jason, Subpar77" #optional
 description='''Example mod description.
 Newline characters can be used like this, and rendered on the mods screen properly.'''
 
-[[dependencies.examplemod]] #recommended
+[[dependencies.mccourse]] #recommended
     modId="forge"
     mandatory=true
     versionRange="[0,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.examplemod]] #recommended
+[[dependencies.mccourse]] #recommended
     modId="minecraft"
     mandatory=true
     versionRange="[1.21.1,1.22,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.mccourse]] #recommended
+    modId="terrablender"
+    mandatory=true
+    versionRange="[4.1.0.8,)"
     ordering="NONE"
     side="BOTH"

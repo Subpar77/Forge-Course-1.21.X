@@ -4,6 +4,7 @@ import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.worldgen.ModBiomeModifiers;
 import net.jason.mccourse.worldgen.ModConfiguredFeatures;
 import net.jason.mccourse.worldgen.ModPlacedFeatures;
+import net.jason.mccourse.worldgen.biome.ModBiomes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -18,6 +19,7 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
+            .add(Registries.BIOME, ModBiomes::bootstrap)
             .add(ForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);
 
     public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

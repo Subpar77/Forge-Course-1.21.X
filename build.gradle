@@ -51,10 +51,11 @@ repositories {
     maven fg.minecraftLibsMaven
     mavenCentral()
     maven {
-        // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
     }
+    maven { url = 'https://maven.minecraftforge.net/' }
+    maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
 }
 
 dependencies {
@@ -63,6 +64,7 @@ dependencies {
     compileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     // at runtime, use the full JEI jar for Forge
     runtimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    implementation "com.github.glitchfiend:TerraBlender-forge:${minecraft_version}-${terrablender_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {

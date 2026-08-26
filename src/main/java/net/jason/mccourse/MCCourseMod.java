@@ -24,6 +24,8 @@ import net.jason.mccourse.screen.ModMenuTypes;
 import net.jason.mccourse.sound.ModSounds;
 import net.jason.mccourse.util.ModWoodTypes;
 import net.jason.mccourse.villager.ModVillagers;
+import net.jason.mccourse.worldgen.biome.ModTerraBlenderAPI;
+import net.jason.mccourse.worldgen.biome.surface.ModSurfaceRules;
 import net.jason.mccourse.worldgen.tree.ModFoliagePlacerTypes;
 import net.jason.mccourse.worldgen.tree.ModTrunkPlacerTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -51,6 +53,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
+import terrablender.api.SurfaceRuleManager;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -87,6 +90,8 @@ public class MCCourseMod
         ModTrunkPlacerTypes.register(modEventBus);
         ModFoliagePlacerTypes.register(modEventBus);
 
+        ModTerraBlenderAPI.registerRegions();
+
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
@@ -103,6 +108,8 @@ public class MCCourseMod
             ComposterBlock.COMPOSTABLES.put(ModItems.KOHLRABI_SEEDS.get(), 0.20f);
 
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SNAPDRAGON.getId(), ModBlocks.POTTED_SNAPDRAGON);
+
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
 
 
         });
