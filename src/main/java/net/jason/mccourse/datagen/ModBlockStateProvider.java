@@ -82,6 +82,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.WALNUT_LEAVES);
         saplingBlock(ModBlocks.WALNUT_SAPLING);
 
+        leavesBlock(ModBlocks.COLORED_LEAVES);
+
         signBlock(((StandingSignBlock) ModBlocks.WALNUT_SIGN.get()), ((WallSignBlock) ModBlocks.WALNUT_WALL_SIGN.get()),
                 blockTexture(ModBlocks.WALNUT_PLANKS.get()));
 
@@ -110,7 +112,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void leavesBlock(RegistryObject<Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(),
-                models().cubeAll(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+                models().singleTexture(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), ResourceLocation.withDefaultNamespace("block/leaves"),
+                        "all", blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
     private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(),
