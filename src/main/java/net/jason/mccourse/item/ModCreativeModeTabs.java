@@ -83,6 +83,7 @@ public class ModCreativeModeTabs {
                     output.accept(ModBlocks.WALNUT_SAPLING.get());
                     output.accept(ModBlocks.WALNUT_LEAVES.get());
                     output.accept(ModBlocks.COLORED_LEAVES.get());
+                    output.accept(ModItems.CATTAIL_SEEDS.get());
 
                 })).build());
 

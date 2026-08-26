@@ -61,6 +61,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.WALNUT_BOAT);
         simpleItem(ModItems.WALNUT_CHEST_BOAT);
 
+        simpleItem(ModItems.CATTAIL);
+        simpleItem(ModItems.CATTAIL_SEEDS);
+
         complexBlock(ModBlocks.GEM_EMPOWERING_STATION.get());
 
         saplingItem(ModBlocks.WALNUT_SAPLING);

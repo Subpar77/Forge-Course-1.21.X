@@ -3,6 +3,7 @@ package net.jason.mccourse.datagen;
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.block.ModBlocks;
 import net.jason.mccourse.block.custom.AlexandriteLampBlock;
+import net.jason.mccourse.block.custom.CattailCropBlock;
 import net.jason.mccourse.block.custom.KohlrabiCropBlock;
 import net.jason.mccourse.block.custom.ModFlammableRotatedPillarBlock;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -90,6 +91,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         hangingSignBlock(ModBlocks.WALNUT_HANGING_SIGN.get(), ModBlocks.WALNUT_WALL_HANGING_SIGN.get(),
                 blockTexture(ModBlocks.WALNUT_PLANKS.get()));
 
+        makeCattailCrop(((CattailCropBlock) ModBlocks.CATTAIL_CROP.get()), "cat_tail_stage", "cat_tail_stage");
+
     }
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -130,6 +133,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((KohlrabiCropBlock) block).getAgeProperty()),
                 ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "block/" + textureName + state.getValue(((KohlrabiCropBlock) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
+    }
+
+    public void makeCattailCrop(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> cattailStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] cattailStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((CattailCropBlock) block).getAgeProperty()),
+                ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "block/" + textureName + state.getValue(((CattailCropBlock) block).getAgeProperty()))).renderType("cutout"));
 
         return models;
     }

@@ -178,6 +178,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> DICE_BLOCK = BLOCKS.register("dice_block",
             () -> new DiceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noLootTable()));
 
+    public static final RegistryObject<Block> CATTAIL_CROP = BLOCKS.register("cattail_crop",
+            () -> new CattailCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
+
     public static final RegistryObject<Block> COLORED_LEAVES = registerBlock("colored_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
                 @Override
