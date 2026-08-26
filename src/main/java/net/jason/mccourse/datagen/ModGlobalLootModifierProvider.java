@@ -3,6 +3,7 @@ package net.jason.mccourse.datagen;
 import net.jason.mccourse.MCCourseMod;
 import net.jason.mccourse.item.ModItems;
 import net.jason.mccourse.loot.AddItemModifier;
+import net.jason.mccourse.loot.AddSusSandItemModifier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -31,6 +32,10 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
         add("metal_detector_from_jungle_temple", new AddItemModifier(new LootItemCondition[] {
                  new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build() },
+                ModItems.METAL_DETECTOR.get()));
+
+        add("metal_detector_from_suspicious_sand", new AddSusSandItemModifier(new LootItemCondition[] {
+                 new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("archaeology/desert_pyramid")).build() },
                 ModItems.METAL_DETECTOR.get()));
 
     }
