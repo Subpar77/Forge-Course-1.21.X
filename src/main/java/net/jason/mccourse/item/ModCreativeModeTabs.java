@@ -74,6 +74,7 @@ public class ModCreativeModeTabs {
 
                     output.accept(ModBlocks.SNAPDRAGON.get());
                     output.accept(ModBlocks.GEM_EMPOWERING_STATION.get());
+                    output.accept(ModBlocks.KAUPEN_PORTAL.get());
 
                     output.accept(ModBlocks.WALNUT_LOG.get());
                     output.accept(ModBlocks.WALNUT_WOOD.get());

@@ -181,6 +181,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> CATTAIL_CROP = BLOCKS.register("cattail_crop",
             () -> new CattailCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
 
+    public static final RegistryObject<Block> KAUPEN_PORTAL = registerBlock("kaupen_portal",
+            () -> new KaupenPortalBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_PORTAL).noLootTable().noOcclusion().noCollission()));
+
     public static final RegistryObject<Block> COLORED_LEAVES = registerBlock("colored_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
                 @Override

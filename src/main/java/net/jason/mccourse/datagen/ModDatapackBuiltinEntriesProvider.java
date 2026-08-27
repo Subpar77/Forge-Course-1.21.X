@@ -6,6 +6,7 @@ import net.jason.mccourse.worldgen.ModBiomeModifiers;
 import net.jason.mccourse.worldgen.ModConfiguredFeatures;
 import net.jason.mccourse.worldgen.ModPlacedFeatures;
 import net.jason.mccourse.worldgen.biome.ModBiomes;
+import net.jason.mccourse.worldgen.dimension.ModDimensions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -31,7 +32,11 @@ public class ModDatapackBuiltinEntriesProvider
                     .add(Registries.BIOME,
                             ModBiomes::bootstrap)
                     .add(ForgeRegistries.Keys.BIOME_MODIFIERS,
-                            ModBiomeModifiers::bootstrap);
+                            ModBiomeModifiers::bootstrap)
+                    .add(Registries.DIMENSION_TYPE,
+                            ModDimensions::bootstrapType)
+                    .add(Registries.LEVEL_STEM,
+                            ModDimensions::bootstrapStem);
 
     public ModDatapackBuiltinEntriesProvider(
             PackOutput output,
