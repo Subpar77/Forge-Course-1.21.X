@@ -101,6 +101,12 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 78;
+    private final int DEFAULT_MAX_PROGRESS = 78;
+
+    private int energyAmount = 0;
+    private final int DEFAULT_ENERGY_AMOUNT = 100;
+
+    private FluidStack neededFluidStack = FluidStack.EMPTY;
 
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
@@ -255,6 +261,9 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
         protected void saveAdditional (CompoundTag pTag, HolderLookup.Provider pRegistries){
             pTag.put("inventory", itemHandler.serializeNBT(pRegistries));
             pTag.putInt("gem_empowering_station.progress", progress);
+            pTag.putInt("gem_empowering_station.max_progress", maxProgress);
+            pTag.putInt("gem_empowering_station.energy_amount", energyAmount);
+
             pTag.putInt("energy", ENERGY_STORAGE.getEnergyStored());
             pTag = FLUID_TANK.writeToNBT(pTag);
 
@@ -267,12 +276,14 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
             super.loadAdditional(pTag, pRegistries);
             itemHandler.deserializeNBT(pRegistries, pTag.getCompound("inventory"));
             progress = pTag.getInt("gem_empowering_station.progress");
+            maxProgress = pTag.getInt("gem_empowering_station.max_progress");
+            energyAmount = pTag.getInt("gem_empowering_station.energy_amount");
             ENERGY_STORAGE.setEnergy(pTag.getInt("energy"));
             FLUID_TANK.readFromNBT(pTag);
         }
 
         public void tick (Level level, BlockPos pPos, BlockState pState){
-            fillUpOnEnergyu();
+            fillUpOnEnergy();
             fillUpOnFluid();
 
             if (isOutputSlotEmptyOrReceivable() && hasRecipe()) {
@@ -292,7 +303,7 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
         }
 
     private void extractFluid() {
-        this.FLUID_TANK.drain(500, IFluidHandler.FluidAction.EXECUTE);
+        this.FLUID_TANK.drain(neededFluidStack.getAmount(), IFluidHandler.FluidAction.EXECUTE);
     }
 
     private void fillUpOnFluid() {
@@ -303,6 +314,10 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
 
     private void transferItemFluidToTank(int fluidInputSlot) {
         ItemStack containerStack = this.itemHandler.getStackInSlot(fluidInputSlot);
+
+        if(containerStack.isEmpty()) {
+            return;
+        }
 
         // Normal bucket handling
         if(containerStack.getItem() instanceof BucketItem bucketItem) {
@@ -337,6 +352,10 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
         if(fillAmount > 0) {
             FluidStack drainedFluid = fluidHandler.drain(fillAmount, IFluidHandler.FluidAction.EXECUTE);
 
+        if(!drainedFluid.isEmpty()) {
+            this.FLUID_TANK.fill(drainedFluid, IFluidHandler.FluidAction.EXECUTE);
+        }
+
         this.itemHandler.setStackInSlot(fluidInputSlot, fluidHandler.getContainer()
         );
         }
@@ -344,12 +363,12 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
     });
 }
 
-    private void fillTankWithFluid(FluidStack stack, ItemStack container) {
-        this.FLUID_TANK.fill(new FluidStack(stack.getFluid(), stack.getAmount()), IFluidHandler.FluidAction.EXECUTE);
-
-        this.itemHandler.extractItem(FLUID_INPUT_SLOT, 1, false);
-        this.itemHandler.insertItem(FLUID_INPUT_SLOT, container, false);
-    }
+//    private void fillTankWithFluid(FluidStack stack, ItemStack container) {
+//        this.FLUID_TANK.fill(new FluidStack(stack.getFluid(), stack.getAmount()), IFluidHandler.FluidAction.EXECUTE);
+//
+//        this.itemHandler.extractItem(FLUID_INPUT_SLOT, 1, false);
+//        this.itemHandler.insertItem(FLUID_INPUT_SLOT, container, false);
+//    }
 
     private boolean hasFluidSourceInSlot(int fluidInputSlot) {
         ItemStack stack = this.itemHandler.getStackInSlot(fluidInputSlot);
@@ -358,10 +377,10 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
     }
 
     private void extractEnergy() {
-        this.ENERGY_STORAGE.extractEnergy(100, false);
+        this.ENERGY_STORAGE.extractEnergy(energyAmount, false);
     }
 
-    private void fillUpOnEnergyu() {
+    private void fillUpOnEnergy() {
         if(hasEnergyInSlot(ENERGY_ITEM_SLOT)) {
             this.ENERGY_STORAGE.receiveEnergy(3200, false);
         }
@@ -385,6 +404,9 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
 
         private void resetProgress () {
             this.progress = 0;
+            this.maxProgress = DEFAULT_MAX_PROGRESS;
+            this.energyAmount = DEFAULT_ENERGY_AMOUNT;
+            this.neededFluidStack = FluidStack.EMPTY;
         }
 
         private boolean hasProgressFinished () {
@@ -402,19 +424,35 @@ public class GemEmpoweringStationBlockEntity extends BlockEntity implements Menu
             if (recipe.isEmpty()) {
                 return false;
             }
-            ItemStack resultItem = recipe.get().value().getResultItem(getLevel().registryAccess());
+
+            GemEmpoweringRecipe currentRecipe = recipe.get().value();
+
+            ItemStack resultItem = currentRecipe.getResultItem(getLevel().registryAccess());
+
+            // Get the machine requirements from THIS recipe
+            this.maxProgress = currentRecipe.getCraftTime();
+            this.energyAmount = currentRecipe.getEnergyAmount();
+            this.neededFluidStack = currentRecipe.getFluidStack();
 
             return canInsertAmountIntoOutputSlot(resultItem.getCount())
-                    && canInsertItemIntoOutputSlot(resultItem.getItem()) && hasEnoughEnergyToCraft()
+                    && canInsertItemIntoOutputSlot(resultItem.getItem())
+                    && hasEnoughEnergyToCraft()
                     && hasEnoughFluidToCraft();
         }
 
     private boolean hasEnoughFluidToCraft() {
-        return this.FLUID_TANK.getFluidAmount() >= 500;
+        FluidStack tankFluid = this.FLUID_TANK.getFluid();
+
+        if (neededFluidStack.isEmpty() || tankFluid.isEmpty()) {
+            return false;
+        }
+
+        return tankFluid.getFluid() == neededFluidStack.getFluid() &&
+                tankFluid.getAmount() >= neededFluidStack.getAmount();
     }
 
     private boolean hasEnoughEnergyToCraft() {
-        return this.ENERGY_STORAGE.getEnergyStored() >= 100 * maxProgress;
+        return this.ENERGY_STORAGE.getEnergyStored() >= energyAmount;
     }
 
     private Optional<RecipeHolder<GemEmpoweringRecipe>> getCurrentRecipe () {

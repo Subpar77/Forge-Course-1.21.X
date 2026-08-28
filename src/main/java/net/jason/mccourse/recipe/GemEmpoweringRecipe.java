@@ -1,32 +1,34 @@
 package net.jason.mccourse.recipe;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.jason.mccourse.MCCourseMod;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import org.checkerframework.checker.units.qual.C;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GemEmpoweringRecipe implements Recipe<GemEmpoweringRecipeInput> {
 
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
+    private final int craftTime;
+    private final int energyAmount;
+    private final FluidStack fluidStack;
 
-    public GemEmpoweringRecipe(NonNullList<Ingredient> inputItems, ItemStack output) {
+    public GemEmpoweringRecipe(NonNullList<Ingredient> inputItems, ItemStack output, int craftTime, int energyAmount, FluidStack fluidStack) {
         this.inputItems = inputItems;
         this.output = output;
-        //this.id = id;
+        this.craftTime = craftTime;
+        this.energyAmount = energyAmount;
+        this.fluidStack = fluidStack;
     }
 
     @Override
@@ -36,6 +38,18 @@ public class GemEmpoweringRecipe implements Recipe<GemEmpoweringRecipeInput> {
         }
 
         return inputItems.get(0).test(pInput.getItem(0));
+    }
+
+    public int getCraftTime() {
+        return craftTime;
+    }
+
+    public int getEnergyAmount() {
+        return energyAmount;
+    }
+
+    public FluidStack getFluidStack() {
+        return fluidStack;
     }
 
     @Override
@@ -82,14 +96,29 @@ public class GemEmpoweringRecipe implements Recipe<GemEmpoweringRecipeInput> {
                 ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "gem_empowering");
 
         private static final MapCodec<GemEmpoweringRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+
                         Ingredient.CODEC.listOf().fieldOf("ingredients").xmap(list -> {
-                                    NonNullList<Ingredient> ingredients = NonNullList.create();
-                                    ingredients.addAll(list);
-                                    return ingredients;
-                                },
-                                ingredients -> ingredients).forGetter(recipe -> recipe.inputItems),
-                        ItemStack.CODEC.fieldOf("output").forGetter(recipe -> recipe.output))
-                .apply(instance, ((ingredients, output) -> new GemEmpoweringRecipe(ingredients, output))));
+                                            NonNullList<Ingredient> ingredients = NonNullList.create();
+                                            ingredients.addAll(list);
+                                            return ingredients;
+                                            },
+                                        ingredients -> ingredients)
+                                .forGetter(recipe -> recipe.inputItems),
+
+                        ItemStack.CODEC.fieldOf("output").forGetter(recipe -> recipe.output),
+
+                        Codec.INT.fieldOf("craftTime").forGetter(recipe -> recipe.craftTime),
+
+                        Codec.INT.fieldOf("energyAmount").forGetter(recipe -> recipe.energyAmount),
+
+                        BuiltInRegistries.FLUID.byNameCodec().fieldOf("fluidType")
+                                .forGetter(recipe -> recipe.fluidStack.getFluid()),
+
+                        Codec.INT.fieldOf("fluidAmount")
+                                .forGetter(recipe -> recipe.fluidStack.getAmount())
+                ).apply(instance,
+                        (ingredients, output, craftTime, energyAmount, fluid, fluidAmount) ->
+                                new GemEmpoweringRecipe(ingredients, output, craftTime, energyAmount, new FluidStack(fluid, fluidAmount))));
 
         private static StreamCodec<RegistryFriendlyByteBuf, GemEmpoweringRecipe> STREAM_CODEC =
                 StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
@@ -114,7 +143,16 @@ public class GemEmpoweringRecipe implements Recipe<GemEmpoweringRecipeInput> {
 
             ItemStack output = ItemStack.STREAM_CODEC.decode(buffer);
 
-            return new GemEmpoweringRecipe(inputs, output);
+            int craftTime = buffer.readInt();
+            int energyAmount = buffer.readInt();
+
+            ResourceLocation fluidId = buffer.readResourceLocation();
+
+            int fluidAmount = buffer.readInt();
+
+            FluidStack fluidStack = new FluidStack(BuiltInRegistries.FLUID.get(fluidId), fluidAmount);
+
+            return new GemEmpoweringRecipe(inputs, output, craftTime, energyAmount, fluidStack);
         }
 
         private static void toNetwork(RegistryFriendlyByteBuf buffer, GemEmpoweringRecipe recipe) {
@@ -125,6 +163,12 @@ public class GemEmpoweringRecipe implements Recipe<GemEmpoweringRecipeInput> {
             }
 
             ItemStack.STREAM_CODEC.encode(buffer, recipe.output);
+
+            buffer.writeInt(recipe.craftTime);
+            buffer.writeInt(recipe.energyAmount);
+
+            buffer.writeResourceLocation(BuiltInRegistries.FLUID.getKey(recipe.fluidStack.getFluid()));
+            buffer.writeInt(recipe.fluidStack.getAmount());
         }
 
     }

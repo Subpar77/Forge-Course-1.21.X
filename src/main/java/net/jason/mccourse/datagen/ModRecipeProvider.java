@@ -13,7 +13,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -195,11 +198,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oreSmeltingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 200, "alexandrite");
         oreBlastingWithnameSpace(output, ALEXANDRITE_SMELTABLES, RecipeCategory.MISC, ModItems.ALEXANDRITE.get(), 0.25f, 100, "alexandrite");
 
-        new GemEmpoweringRecipeBuilder(ModItems.RAW_ALEXANDRITE.get(), ModItems.ALEXANDRITE.get(), 3)
+        new GemEmpoweringRecipeBuilder(ModItems.RAW_ALEXANDRITE.get(), ModItems.ALEXANDRITE.get(), 3, 160, 50,
+                new FluidStack(Fluids.WATER, 2000))
                 .unlockedBy("has_raw_alexandrite", has(ModItems.RAW_ALEXANDRITE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "alexandrite_from_gem_empowering"));
 
-        new GemEmpoweringRecipeBuilder(Items.COAL, Items.DIAMOND, 7)
+        new GemEmpoweringRecipeBuilder(Items.COAL, Items.DIAMOND, 7, 40, 150,
+                new FluidStack(Fluids.LAVA, 500))
                 .unlockedBy("has_diamond", has(Items.DIAMOND))
                 .save(output, ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "diamond_from_gem_empowering"));
 
