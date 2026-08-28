@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class DegradableRubyBlock extends Block implements GemDegradable {
-    private GemDegradationLevel degradationLevel;
+    private final GemDegradationLevel degradationLevel;
 
 
 
