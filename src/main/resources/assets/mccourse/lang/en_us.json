@@ -72,6 +72,16 @@
 
   "block.mccourse.kaupen_portal": "Kaupen Portal",
 
+  "block.mccourse.ruby_block": "Ruby Block",
+  "block.mccourse.exposed_ruby_block": "Exposed Ruby Block",
+  "block.mccourse.weathered_ruby_block": "Weathered Ruby Block",
+  "block.mccourse.degraded_ruby_block": "Degraded Ruby Block",
+
+  "block.mccourse.waxed_ruby_block": "Waxed Ruby Block",
+  "block.mccourse.waxed_exposed_ruby_block": "Waxed Exposed Ruby Block",
+  "block.mccourse.waxed_weathered_ruby_block": "Waxed Weathered Ruby Block",
+  "block.mccourse.waxed_degraded_ruby_block": "Waxed Degraded Ruby Block",
+
   "item_group.mccourse.course_tab": "Course Tab",
 
   "item.mccourse.metal_detector.no_valuables": "No Valuables Found",

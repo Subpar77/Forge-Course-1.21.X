@@ -184,6 +184,24 @@ public class ModBlocks {
     public static final RegistryObject<Block> KAUPEN_PORTAL = registerBlock("kaupen_portal",
             () -> new KaupenPortalBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_PORTAL).noLootTable().noOcclusion().noCollission()));
 
+    public static final RegistryObject<Block> RUBY_BLOCK = registerBlock("ruby_block",
+            () -> new DegradableRubyBlock(GemDegradable.GemDegradationLevel.UNAFFECTED, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final RegistryObject<Block> EXPOSED_RUBY_BLOCK = registerBlock("exposed_ruby_block",
+            () -> new DegradableRubyBlock(GemDegradable.GemDegradationLevel.EXPOSED, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final RegistryObject<Block> WEATHERED_RUBY_BLOCK = registerBlock("weathered_ruby_block",
+            () -> new DegradableRubyBlock(GemDegradable.GemDegradationLevel.WEATHERED, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final RegistryObject<Block> DEGRADED_RUBY_BLOCK = registerBlock("degraded_ruby_block",
+            () -> new DegradableRubyBlock(GemDegradable.GemDegradationLevel.DEGRADED, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+
+    public static final RegistryObject<Block> WAXED_RUBY_BLOCK = registerBlock("waxed_ruby_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final RegistryObject<Block> WAXED_EXPOSED_RUBY_BLOCK = registerBlock("waxed_exposed_ruby_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final RegistryObject<Block> WAXED_WEATHERED_RUBY_BLOCK = registerBlock("waxed_weathered_ruby_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final RegistryObject<Block> WAXED_DEGRADED_RUBY_BLOCK = registerBlock("waxed_degraded_ruby_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+
     public static final RegistryObject<Block> COLORED_LEAVES = registerBlock("colored_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
                 @Override

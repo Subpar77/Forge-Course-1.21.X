@@ -92,6 +92,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.CATTAIL_CROP.get(), this.createCropDrops(ModBlocks.CATTAIL_CROP.get(),
                 ModItems.CATTAIL.get(), ModItems.CATTAIL_SEEDS.get(), lootitemcondition$builder2));
 
+        this.dropSelf(ModBlocks.RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.EXPOSED_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.WEATHERED_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.DEGRADED_RUBY_BLOCK.get());
+
+        this.dropSelf(ModBlocks.WAXED_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.WAXED_EXPOSED_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.WAXED_WEATHERED_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.WAXED_DEGRADED_RUBY_BLOCK.get());
+
     }
 
     @Override

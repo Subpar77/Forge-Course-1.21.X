@@ -38,6 +38,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.SOUND_BLOCK);
         blockWithItem(ModBlocks.KAUPEN_PORTAL);
 
+        blockWithItem(ModBlocks.RUBY_BLOCK);
+        blockWithItem(ModBlocks.EXPOSED_RUBY_BLOCK);
+        blockWithItem(ModBlocks.WEATHERED_RUBY_BLOCK);
+        blockWithItem(ModBlocks.DEGRADED_RUBY_BLOCK);
+
+        blockWithItem(ModBlocks.WAXED_RUBY_BLOCK);
+        blockWithItem(ModBlocks.WAXED_EXPOSED_RUBY_BLOCK);
+        blockWithItem(ModBlocks.WAXED_WEATHERED_RUBY_BLOCK);
+        blockWithItem(ModBlocks.WAXED_DEGRADED_RUBY_BLOCK);
+
         stairsBlock((StairBlock) ModBlocks.ALEXANDRITE_STAIRS.get(), blockTexture(ModBlocks.ALEXANDRITE_BLOCK.get()));
         slabBlock((SlabBlock) ModBlocks.ALEXANDRITE_SLABS.get(), blockTexture(ModBlocks.ALEXANDRITE_BLOCK.get()), blockTexture(ModBlocks.ALEXANDRITE_BLOCK.get()));
 
