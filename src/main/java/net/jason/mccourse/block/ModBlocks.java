@@ -202,6 +202,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> WAXED_DEGRADED_RUBY_BLOCK = registerBlock("waxed_degraded_ruby_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
 
+    public static final RegistryObject<Block> KAUPEN_FURNACE_BLOCK = registerBlock("kaupen_furnace",
+            () -> new KaupenFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+
     public static final RegistryObject<Block> COLORED_LEAVES = registerBlock("colored_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
                 @Override

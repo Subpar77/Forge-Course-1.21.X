@@ -102,6 +102,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.WAXED_WEATHERED_RUBY_BLOCK.get());
         this.dropSelf(ModBlocks.WAXED_DEGRADED_RUBY_BLOCK.get());
 
+
+        this.dropSelf(ModBlocks.KAUPEN_FURNACE_BLOCK.get());
+
     }
 
     @Override

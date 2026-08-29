@@ -1,0 +1,12 @@
+{
+  "type": "mccourse:kaupen_furnace",
+  "category": "misc",
+  "cookingtime": 50,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "minecraft:raw_iron"
+  }
+}

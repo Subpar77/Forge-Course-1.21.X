@@ -20,6 +20,7 @@ import net.jason.mccourse.potion.BetterBrewingRecipe;
 import net.jason.mccourse.potion.ModPotions;
 import net.jason.mccourse.recipe.ModRecipes;
 import net.jason.mccourse.screen.GemEmpoweringStationScreen;
+import net.jason.mccourse.screen.KaupenFurnaceScreen;
 import net.jason.mccourse.screen.ModMenuTypes;
 import net.jason.mccourse.sound.ModSounds;
 import net.jason.mccourse.util.ModWoodTypes;
@@ -161,6 +162,7 @@ public class MCCourseMod
                 ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
 
                 MenuScreens.register(ModMenuTypes.GEM_EMPOWERING_MENU.get(), GemEmpoweringStationScreen::new);
+                MenuScreens.register(ModMenuTypes.KAUPEN_FURNACE_MENU.get(), KaupenFurnaceScreen::new);
 
                 EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
                 EntityRenderers.register(ModEntities.DICE_PROJECTILE.get(), ThrownItemRenderer::new);
